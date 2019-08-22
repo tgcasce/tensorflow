@@ -16,11 +16,11 @@ ifeq ($(TARGET), ios)
 		IPHONEOS_PLATFORM := $(shell xcrun --sdk iphoneos --show-sdk-platform-path)
 		IPHONEOS_SYSROOT := $(shell xcrun --sdk iphoneos --show-sdk-path)
 	endif
-	IOS_SDK_VERSION := $(shell xcrun --sdk iphoneos --show-sdk-version)
+	OSX_SDK_VERSION := $(shell xcrun --sdk iphoneos --show-sdk-version)
 	MIN_SDK_VERSION := 9.0
 	# Override TARGET_ARCH with armv7, armv7s, arm64, i386, or x86_64.
 	TARGET_ARCH := x86_64
-	CXXFLAGS += -miphoneos-version-min=$(MIN_SDK_VERSION) \
+	CXXFLAGS += -mmacosx-version-min=$(MIN_SDK_VERSION) \
 		-DGEMMLOWP_ALLOW_SLOW_SCALAR_FALLBACK \
 		-DTF_LITE_USE_CBLAS \
 		-fembed-bitcode \
@@ -31,7 +31,7 @@ ifeq ($(TARGET), ios)
 		${IPHONEOS_SYSROOT} \
 		-arch $(TARGET_ARCH) \
 		-O3
-	CFLAGS += -miphoneos-version-min=$(MIN_SDK_VERSION) \
+	CFLAGS += -mmacosx-version-min=$(MIN_SDK_VERSION) \
 		-fembed-bitcode \
 		-mno-thumb \
 		-isysroot \
@@ -39,7 +39,7 @@ ifeq ($(TARGET), ios)
 		-arch $(TARGET_ARCH) \
 		-O3
 	LDFLAGS := -fembed-bitcode \
-		-miphoneos-version-min=${MIN_SDK_VERSION} \
+		-mmacosx-version-min=${MIN_SDK_VERSION} \
 		-framework Accelerate \
 		-arch $(TARGET_ARCH)
 endif

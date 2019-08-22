@@ -98,6 +98,7 @@ $(wildcard tensorflow/lite/*.c) \
 $(wildcard tensorflow/lite/c/*.c) \
 $(wildcard tensorflow/lite/core/*.cc) \
 $(wildcard tensorflow/lite/core/api/*.cc) \
+tensorflow/lite/experimental/c/c_api.cc \
 tensorflow/lite/experimental/resource_variable/*.cc \
 tensorflow/lite/experimental/ruy/allocator.cc \
 tensorflow/lite/experimental/ruy/block_map.cc \
@@ -156,6 +157,9 @@ ifeq ($(TARGET),windows)
 	BUILD_WITH_NNAPI=false
 endif
 ifeq ($(TARGET),ios)
+	BUILD_WITH_NNAPI=false
+endif
+ifeq ($(TARGET),osx)
 	BUILD_WITH_NNAPI=false
 endif
 ifeq ($(TARGET),rpi)
