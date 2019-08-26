@@ -4,7 +4,7 @@ ifeq ($(TARGET), osx)
 		MACOSX_SYSROOT := $(shell xcrun --sdk macosx --show-sdk-path)
 	OSX_SDK_VERSION := $(shell xcrun --sdk macosx --show-sdk-version)
 	MIN_SDK_VERSION := 10.10
-	# Override TARGET_ARCH with armv7, armv7s, arm64, i386, or x86_64.
+	# Override TARGET_ARCH with x86_64.
 	TARGET_ARCH := x86_64
 	CXXFLAGS += -mmacosx-version-min=$(MIN_SDK_VERSION) \
 		-DGEMMLOWP_ALLOW_SLOW_SCALAR_FALLBACK \
